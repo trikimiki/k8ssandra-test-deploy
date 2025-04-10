@@ -1,0 +1,74 @@
+apiVersion: eksctl.io/v1alpha5
+kind: ClusterConfig
+
+metadata:
+  name: tb-k8ssandra-test-triki
+  region: ap-south-1
+  version: "1.32"
+
+availabilityZones: [ap-south-1a,ap-south-1b,ap-south-1c]
+
+iam:
+  withOIDC: true
+  serviceAccounts:
+  - metadata:
+      name: aws-load-balancer-controller
+      namespace: kube-system
+    wellKnownPolicies:
+      awsLoadBalancerController: true
+
+managedNodeGroups:
+  - name: tb-node
+    instanceType: t4g.large
+    desiredCapacity: 1
+    minSize: 1
+    maxSize: 1
+    labels: { tb-node: allowed }
+    availabilityZones: ["ap-south-1a"]
+    privateNetworking: true
+    volumeType: gp3
+    volumeSize: 30
+
+  - name: k8ssandra-rack-1a
+    instanceType: t4g.large
+    desiredCapacity: 1
+    minSize: 1
+    maxSize: 1
+    labels: {
+      cassandra: allowed,
+      rack: 1a }
+    availabilityZones: ["ap-south-1a"]
+    privateNetworking: true
+    volumeType: gp3
+    volumeSize: 30
+
+  - name: k8ssandra-rack-1b
+    instanceType: t4g.large
+    desiredCapacity: 1
+    minSize: 1
+    maxSize: 1
+    labels: {
+      cassandra: allowed,
+      rack: 1b }
+    availabilityZones: ["ap-south-1b"]
+    privateNetworking: true
+    volumeType: gp3
+    volumeSize: 30
+
+  - name: k8ssandra-rack-1c
+    instanceType: t4g.large
+    desiredCapacity: 1
+    minSize: 1
+    maxSize: 1
+    labels: {
+      cassandra: allowed,
+      rack: 1c }
+    availabilityZones: ["ap-south-1c"]
+    privateNetworking: true
+    volumeType: gp3
+    volumeSize: 30
+
+addons:
+  - name: aws-ebs-csi-driver
+    wellKnownPolicies:      # add IAM and service account
+      ebsCSIController: true
