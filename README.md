@@ -1,4 +1,4 @@
-my first shoot at deploying single-cluster k8ssandra on EKS
+my first shot at deploying single-cluster k8ssandra on EKS
 
 will use [thingsboard ce](https://thingsboard.io/docs/faq/) as a platfrom to test the database
 
@@ -39,4 +39,15 @@ helm install --version 1.14.4 cert-manager jetstack/cert-manager \
   --set cainjector.serviceAccount.create=false
 ```
 
-## step 4 - TBD
+## step 4 - install k8ssandra-operator in cluster scoped mode
+since thingsboard will need to access cassandra db, later we will deploy them in the same separate namespace
+```
+helm repo add k8ssandra https://helm.k8ssandra.io/stable
+helm repo update
+helm install k8ssandra-operator --version 1.21.2 k8ssandra/k8ssandra-operator \
+  -n k8ssandra-operator \
+  --create-namespace \
+  --set global.clusterScoped=true
+```
+
+## step 5 - TBC
