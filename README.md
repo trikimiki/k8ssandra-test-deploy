@@ -24,7 +24,7 @@ helm repo add eks https://aws.github.io/eks-charts
 helm repo update eks
 helm install aws-load-balancer-controller eks/aws-load-balancer-controller \
   -n kube-system \
-  --set clusterName=tb-k8ssandra-test-triki \
+  --set clusterName=k8ssandra-test-triki \
   --set serviceAccount.create=false \
   --set serviceAccount.name=aws-load-balancer-controller
 ```
@@ -40,14 +40,29 @@ helm install --version 1.14.4 cert-manager jetstack/cert-manager \
 ```
 
 ## step 4 - install k8ssandra-operator in cluster scoped mode
-since thingsboard will need to access cassandra db, later we will deploy them in the same separate namespace
+since thingsboard will need to access cassandra db, we will deploy them both in the separate namespace - need to use cluster scope
 ```
 helm repo add k8ssandra https://helm.k8ssandra.io/stable
-helm repo update
+helm repo update k8ssandra
 helm install k8ssandra-operator --version 1.21.2 k8ssandra/k8ssandra-operator \
   -n k8ssandra-operator \
   --create-namespace \
   --set global.clusterScoped=true
 ```
 
-## step 5 - TBC
+## step 5 - create namespace for thingsboard and cassandra
+
+```
+kubectl apply -f thingsboard/namespace.yml
+```
+
+## step 6 - deploy k8ssandra cluster
+
+```
+kubectl apply -f cassandra/k8ssandra-cluster.yml
+```
+
+## step 7 - TBC
+
+note to self: get cassandra superuser pass with `kubectl -n thingsboard get secret thingsboardcluster-superuser -o json | jq -r '.data.password'
+ | base64 --decode`

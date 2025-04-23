@@ -1,0 +1,75 @@
+# TODO - make it console one-liner instead?
+# apiVersion: v1
+# kind: Secret
+# metadata:
+#   name: medusa-bucket-key
+#   namespace: thingsboard
+# type: Opaque
+# stringData:
+#   credentials: |-
+#     [default]
+#     aws_access_key_id = demo12345
+#     aws_secret_access_key = demo12345
+# ---
+apiVersion: k8ssandra.io/v1alpha1
+kind: K8ssandraCluster
+metadata:
+  name: cassandra-cluster
+  namespace: thingsboard
+spec:
+  cassandra:
+    serverVersion: "5.0.3"
+    clusterName: "Thingsboard Cluster"
+    datacenters:
+      - metadata:
+          name: datacenter1
+        size: 3
+        racks:
+          - name: r1a
+            nodeAffinityLabels:
+              cassandra: allowed
+              "topology.kubernetes.io/zone": "ap-south-1a"
+          - name: r1b
+            nodeAffinityLabels:
+              cassandra: allowed
+              "topology.kubernetes.io/zone": "ap-south-1b"
+          - name: r1c
+            nodeAffinityLabels:
+              cassandra: allowed
+              "topology.kubernetes.io/zone": "ap-south-1c"
+    resources:
+      requests:
+        cpu: 1
+        memory: 6Gi
+      limits:
+        cpu: 2
+        memory: 6Gi
+    config:
+      jvmOptions:
+        heap_initial_size: 4G # same as "-Xmx"
+        heap_max_size: 4G # same as "-Xms" or "MAX_HEAP_SIZE"
+    storageConfig:
+      cassandraDataVolumeClaimSpec:
+        storageClassName: gp3
+        accessModes:
+          - ReadWriteOnce
+        resources:
+          requests:
+            storage: 15Gi
+    telemetry:
+      prometheus:
+        enabled: true
+  # medusa:
+  #   storageProperties:
+  #     storageProvider: s3_compatible
+  #     storageSecretRef:
+  #       name: medusa-bucket-key
+  #     bucketName: k8ssandra-medusa
+  #     prefix: test
+  #     host: change-me
+  #     secure: false
+  # reaper:
+  #   keyspace: reaper_db
+  #   telemetry:
+  #     prometheus:
+  #       enabled: true
