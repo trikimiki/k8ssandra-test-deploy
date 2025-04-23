@@ -2,7 +2,7 @@ apiVersion: eksctl.io/v1alpha5
 kind: ClusterConfig
 
 metadata:
-  name: tb-k8ssandra-test-triki
+  name: tb-k8ssandra-test-triki-1
   region: ap-south-1
   version: "1.32"
 
@@ -29,40 +29,34 @@ managedNodeGroups:
     volumeType: gp3
     volumeSize: 30
 
-  - name: k8ssandra-rack-1a
+  - name: k8ssandra-r1a
     instanceType: t4g.large
     desiredCapacity: 1
     minSize: 1
     maxSize: 1
-    labels: {
-      cassandra: allowed,
-      rack: 1a }
+    labels: { cassandra: allowed }
     availabilityZones: ["ap-south-1a"]
     privateNetworking: true
     volumeType: gp3
     volumeSize: 30
 
-  - name: k8ssandra-rack-1b
+  - name: k8ssandra-r1b
     instanceType: t4g.large
     desiredCapacity: 1
     minSize: 1
     maxSize: 1
-    labels: {
-      cassandra: allowed,
-      rack: 1b }
+    labels: { cassandra: allowed }
     availabilityZones: ["ap-south-1b"]
     privateNetworking: true
     volumeType: gp3
     volumeSize: 30
 
-  - name: k8ssandra-rack-1c
+  - name: k8ssandra-r1c
     instanceType: t4g.large
     desiredCapacity: 1
     minSize: 1
     maxSize: 1
-    labels: {
-      cassandra: allowed,
-      rack: 1c }
+    labels: { cassandra: allowed }
     availabilityZones: ["ap-south-1c"]
     privateNetworking: true
     volumeType: gp3
