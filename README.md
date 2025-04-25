@@ -2,6 +2,8 @@ my first shot at deploying single-cluster k8ssandra on EKS
 
 will use [thingsboard ce](https://thingsboard.io/docs/faq/) as a platfrom to test the database
 
+# INSTALLATION
+
 ## prerequisites
 - setup [an AWS account](https://docs.aws.amazon.com/IAM/latest/UserGuide/getting-started-account-iam.html)
 - install:
@@ -9,17 +11,18 @@ will use [thingsboard ce](https://thingsboard.io/docs/faq/) as a platfrom to tes
   - [eksctl](https://docs.aws.amazon.com/eks/latest/userguide/setting-up.html)
   - [awscli](https://docs.aws.amazon.com/cli/latest/userguide/getting-started-install.html)
 - configure environment:
-  - ```
-    aws configure
-    ```
-  - ```
-    aws eks update-kubeconfig --region ap-south-1 --name tb-k8ssandra-test-triki
-    ```
+  ```
+  aws configure
+  ```
 
-## step 1 - deploy nodes
+
+## step 1 - create EKS cluster and get access with kubectl
 
 ```
 eksctl create cluster -f eks/cluster.yml
+```
+```
+aws eks update-kubeconfig --region ap-south-1 --name k8ssandra-test-triki
 ```
 
 ## step 2 - create gp3 storage class, make it default
@@ -136,7 +139,7 @@ sudo chmod +x install-tb.sh
 cd -
 ```
 
-### 8.4 create and start thingsboard app - TBC
+### 8.4 create and start thingsboard app
 
 ```
 kubectl apply -f thingsboard/tb-node-sts.yml
@@ -148,9 +151,9 @@ kubectl apply -f thingsboard/tb-node-sts.yml
 kubectl apply -f thingsboard/tb-nlb.yml
 ```
 
-## step 9 access thingsboard:
+## step 9 access thingsboard
 
-you can access using `EXTERNAL-IP` link from:
+you can access web UI from browser via `EXTERNAL-IP` link from:
 ```
 kubectl -n thingsboard get svc tb-nlb
 ```
@@ -161,3 +164,7 @@ default credentials are:
 > Tenant Administrator: tenant@thingsboard.org / tenant
 
 > Customer User: customer@thingsboard.org / customer
+
+# K8SSANDRA MAINTENANCE
+
+## TBC
