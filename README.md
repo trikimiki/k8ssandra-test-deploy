@@ -2,6 +2,20 @@ my first shot at deploying single-cluster k8ssandra on EKS
 
 will use [thingsboard ce](https://thingsboard.io/docs/faq/) as a platfrom to test the database
 
+## prerequisites
+- setup [an AWS account](https://docs.aws.amazon.com/IAM/latest/UserGuide/getting-started-account-iam.html)
+- install:
+  - [kubectl](https://kubernetes.io/docs/tasks/tools/)
+  - [eksctl](https://docs.aws.amazon.com/eks/latest/userguide/setting-up.html)
+  - [awscli](https://docs.aws.amazon.com/cli/latest/userguide/getting-started-install.html)
+- configure environment:
+  - ```
+    aws configure
+    ```
+  - ```
+    aws eks update-kubeconfig --region ap-south-1 --name tb-k8ssandra-test-triki
+    ```
+
 ## step 1 - deploy nodes
 
 ```
@@ -62,7 +76,70 @@ kubectl apply -f thingsboard/namespace.yml
 kubectl apply -f cassandra/k8ssandra-cluster.yml
 ```
 
-## step 7 - TBC
+you can use the following to get into `cqlsh` console:
+```
+kubectl -n thingsboard exec -it thingsboardcluster-datacenter1-r1a-sts-0 -c cassandra -- cqlsh -u <username>
+```
+to get creds:
+```
+kubectl -n thingsboard get secret thingsboardcluster-superuser -o json | jq -r '.data.username' | base64 --decode
+kubectl -n thingsboard get secret thingsboardcluster-superuser -o json | jq -r '.data.password' | base64 --decode
+```
 
-note to self: get cassandra superuser pass with `kubectl -n thingsboard get secret thingsboardcluster-superuser -o json | jq -r '.data.password'
- | base64 --decode`
+## step 7 - create AWS RDS (Postgres) instance for thingsboard
+AWS Console -> Aurora and RDS -> Create database
+
+see [rds-params.png](rds-params.png) - crucial parameters are highlighted
+
+__IMPORTANT__ - save master user password somewhere! you cannot read it after DB creation; we will put it inside kubernetes secret in the next step
+
+alternatively, you can use AWS secret manager for this
+
+## step 8 - deploy thingsboard
+
+### 8.1 create secret with RDS creds
+
+```
+RDS_SOURCE="jdbc:postgresql://$(aws rds describe-db-instances --region ap-south-1 | jq -r '.DBInstances[] | select(.DBInstanceIdentifier == "rds-for-k8ssandra-test-triki") | .Endpoint.Address'):5432/thingsboard"
+```
+```
+RDS_USER=$(aws rds describe-db-instances --region ap-south-1 | jq -r '.DBInstances[] | select(.DBInstanceIdentifier == "rds-for-k8ssandra-test-triki") | .MasterUsername')
+```
+```
+RDS_PASS=<paste master password here>
+```
+```
+kubectl create -n thingsboard secret generic rds-secrets \
+  --from-literal=rds-datasource="$RDS_SOURCE" \
+  --from-literal=rds-username="$RDS_USER" \
+  --from-literal=rds-password="$RDS_PASS"
+```
+
+### 8.2 create thingsboard configmap
+
+```
+kubectl apply -f thingsboard/tb-node-configmap.yml
+```
+
+### 8.3 install postgres and cassandra data
+
+```
+cd thingsboard/install
+sudo chmod +x install-tb.sh
+```
+
+```
+./install-tb.sh
+```
+
+```
+cd -
+```
+
+TODO: fix this
+```
+2025-04-25 10:38:24,953 [Thingsboard Cluster-admin-1] WARN  c.d.o.d.i.c.c.ControlConnection - [Thingsboard Cluster] Authentication error (AuthenticationException: Authentication error on node thingsboardcluster-datacenter1-service/192.168.112.51:9042: Node thingsboardcluster-datacenter1-service/192.168.112.51:9042 requires authentication (org.apache.cassandra.auth.PasswordAuthenticator), but no authenticator configured)
+```
+bug???
+
+### 8.4 create and start thingsboard app - TBC

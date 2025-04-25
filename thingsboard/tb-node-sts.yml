@@ -1,0 +1,141 @@
+#
+# Copyright © 2016-2020 The Thingsboard Authors
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#     http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+#
+
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: tb-node
+  namespace: thingsboard
+spec:
+  serviceName: tb-node
+  replicas: 1
+  selector:
+    matchLabels:
+      app: tb-node
+  template:
+    metadata:
+      labels:
+        app: tb-node
+    spec:
+      nodeSelector:
+        tb-node: allowed
+      affinity:
+        podAntiAffinity:
+          requiredDuringSchedulingIgnoredDuringExecution:
+            - labelSelector:
+                matchExpressions:
+                  - key: "app"
+                    operator: In
+                    values:
+                      - tb-node
+              topologyKey: "kubernetes.io/hostname"
+      securityContext:
+        runAsUser: 799
+        runAsNonRoot: true
+        fsGroup: 799
+      volumes:
+        - name: tb-node-config
+          configMap:
+            name: tb-node-config
+            items:
+            - key: conf
+              path:  thingsboard.conf
+            - key: logback
+              path:  logback.xml
+        - name: tb-node-logs
+          emptyDir: {}
+      containers:
+      - name: server
+        imagePullPolicy: Always
+        image: thingsboard/tb-node:4.0.1
+        ports:
+        - containerPort: 8080
+          name: http
+        - containerPort: 1883
+          name: mqtt
+        resources:
+          requests:
+            cpu: "1500m"
+            memory: 6Gi
+          limits:
+            cpu: "2000m"
+            memory: 6Gi
+        env:
+        - name: JAVA_OPTS
+          value: "-Xms4G -Xmx4G -Xss512k -XX:+AlwaysPreTouch"
+        - name: TB_SERVICE_TYPE
+          value: "monolith"
+        - name: TB_QUEUE_TYPE
+          value: "in-memory"
+        - name: HTTP_LOG_CONTROLLER_ERROR_STACK_TRACE
+          value: "true"
+        - name: COAP_ENABLED
+          value: "false"
+        - name: SNMP_ENABLED
+          value: "false"
+        - name: LWM2M_ENABLED
+          value: "false"
+        - name: EDGES_ENABLED
+          value: "false"
+        - name: SPRING_DATASOURCE_URL
+          valueFrom:
+            secretKeyRef:
+              name: rds-secrets
+              key: rds-datasource
+        - name: SPRING_DATASOURCE_USERNAME
+          valueFrom:
+            secretKeyRef:
+              name: rds-secrets
+              key: rds-username
+        - name: SPRING_DATASOURCE_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: rds-secrets
+              key: rds-password
+        - name: DATABASE_TS_TYPE
+          value: "cassandra"
+        - name: CASSANDRA_URL
+          value: "thingsboardcluster-datacenter1-service:9042"
+        - name: CASSANDRA_USERNAME
+          valueFrom:
+            secretKeyRef:
+              name: thingsboardcluster-superuser
+              key: username
+        - name: CASSANDRA_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: thingsboardcluster-superuser
+              key: password
+        - name: CASSANDRA_READ_CONSISTENCY_LEVEL
+          value: "QUORUM"
+        - name: CASSANDRA_WRITE_CONSISTENCY_LEVEL
+          value: "QUORUM"
+        volumeMounts:
+          - mountPath: /config
+            name: tb-node-config
+          - mountPath: /var/log/thingsboard
+            name: tb-node-logs
+        readinessProbe:
+          httpGet:
+            path: /login
+            port: http
+        livenessProbe:
+          httpGet:
+            path: /login
+            port: http
+          initialDelaySeconds: 460
+          timeoutSeconds: 10
+      restartPolicy: Always

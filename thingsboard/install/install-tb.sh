@@ -1,3 +1,4 @@
+#!/bin/bash
 #
 # Copyright © 2016-2020 The Thingsboard Authors
 #
@@ -14,9 +15,8 @@
 # limitations under the License.
 #
 
-apiVersion: v1
-kind: Namespace
-metadata:
-  name: thingsboard
-  labels:
-    name: thingsboard
+kubectl -n thingsboard apply -f tb-db-setup-pod.yml &&
+kubectl -n thingsboard wait --for=condition=Ready pod/tb-db-setup --timeout=120s &&
+kubectl -n thingsboard exec tb-db-setup -- sh -c 'export INSTALL_TB=true; export LOAD_DEMO='true'; start-tb-node.sh; touch /tmp/install-finished;'
+
+kubectl -n thingsboard delete pod tb-db-setup
