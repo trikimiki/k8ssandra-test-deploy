@@ -136,10 +136,28 @@ sudo chmod +x install-tb.sh
 cd -
 ```
 
-TODO: fix this
-```
-2025-04-25 10:38:24,953 [Thingsboard Cluster-admin-1] WARN  c.d.o.d.i.c.c.ControlConnection - [Thingsboard Cluster] Authentication error (AuthenticationException: Authentication error on node thingsboardcluster-datacenter1-service/192.168.112.51:9042: Node thingsboardcluster-datacenter1-service/192.168.112.51:9042 requires authentication (org.apache.cassandra.auth.PasswordAuthenticator), but no authenticator configured)
-```
-bug???
-
 ### 8.4 create and start thingsboard app - TBC
+
+```
+kubectl apply -f thingsboard/tb-node-sts.yml
+```
+
+### 8.5 create AWS load-balancer
+
+```
+kubectl apply -f thingsboard/tb-nlb.yml
+```
+
+## step 9 access thingsboard:
+
+you can access using `EXTERNAL-IP` link from:
+```
+kubectl -n thingsboard get svc tb-nlb
+```
+default credentials are:
+
+> System Administrator: sysadmin@thingsboard.org / sysadmin
+
+> Tenant Administrator: tenant@thingsboard.org / tenant
+
+> Customer User: customer@thingsboard.org / customer

@@ -68,10 +68,10 @@ spec:
           name: mqtt
         resources:
           requests:
-            cpu: "1500m"
+            cpu: 1
             memory: 6Gi
           limits:
-            cpu: "2000m"
+            cpu: 2
             memory: 6Gi
         env:
         - name: JAVA_OPTS
@@ -109,6 +109,8 @@ spec:
           value: "cassandra"
         - name: CASSANDRA_URL
           value: "thingsboardcluster-datacenter1-service:9042"
+        - name: CASSANDRA_USE_CREDENTIALS
+          value: "true"
         - name: CASSANDRA_USERNAME
           valueFrom:
             secretKeyRef:

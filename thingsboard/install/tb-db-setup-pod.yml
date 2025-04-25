@@ -59,6 +59,8 @@ spec:
       value: "cassandra"
     - name: CASSANDRA_URL
       value: "thingsboardcluster-datacenter1-service:9042"
+    - name: CASSANDRA_USE_CREDENTIALS
+      value: "true"
     - name: CASSANDRA_USERNAME
       valueFrom:
         secretKeyRef:
