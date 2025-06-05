@@ -4,7 +4,7 @@ kind: ClusterConfig
 metadata:
   name: k8ssandra-test-triki
   region: ap-south-1
-  version: "1.32"
+  version: "1.33"
 
 availabilityZones: [ap-south-1a,ap-south-1b,ap-south-1c]
 

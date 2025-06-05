@@ -18,7 +18,7 @@ metadata:
   namespace: thingsboard
 spec:
   cassandra:
-    serverVersion: "5.0.3"
+    serverVersion: "5.0.4"
     clusterName: "Thingsboard Cluster"
     datacenters:
       - metadata:
@@ -39,10 +39,10 @@ spec:
               "topology.kubernetes.io/zone": "ap-south-1c"
     resources:
       requests:
-        cpu: 1
+        cpu: 1000m
         memory: 6Gi
       limits:
-        cpu: 2
+        cpu: 2000m
         memory: 6Gi
     config:
       jvmOptions:

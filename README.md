@@ -48,10 +48,10 @@ helm install aws-load-balancer-controller eks/aws-load-balancer-controller \
 ```
 helm repo add jetstack https://charts.jetstack.io
 helm repo update jetstack
-helm install --version 1.14.4 cert-manager jetstack/cert-manager \
+helm install --version 1.17.2 cert-manager jetstack/cert-manager \
   -n cert-manager \
   --create-namespace \
-  --set installCRDs=true \
+  --set crds.enabled=true \
   --set serviceAccount.create=false \
   --set cainjector.serviceAccount.create=false
 ```
@@ -61,7 +61,7 @@ since thingsboard will need to access cassandra db, we will deploy them both in 
 ```
 helm repo add k8ssandra https://helm.k8ssandra.io/stable
 helm repo update k8ssandra
-helm install k8ssandra-operator --version 1.21.2 k8ssandra/k8ssandra-operator \
+helm install k8ssandra-operator --version 1.23.1 k8ssandra/k8ssandra-operator \
   -n k8ssandra-operator \
   --create-namespace \
   --set global.clusterScoped=true
@@ -136,7 +136,7 @@ sudo chmod +x install-tb.sh
 ```
 
 ```
-cd -
+cd ../..
 ```
 
 ### 8.4 create and start thingsboard app

@@ -68,10 +68,10 @@ spec:
           name: mqtt
         resources:
           requests:
-            cpu: 1
+            cpu: 1000m
             memory: 6Gi
           limits:
-            cpu: 2
+            cpu: 2000m
             memory: 6Gi
         env:
         - name: JAVA_OPTS
@@ -138,6 +138,6 @@ spec:
           httpGet:
             path: /login
             port: http
-          initialDelaySeconds: 460
+          initialDelaySeconds: 90
           timeoutSeconds: 10
       restartPolicy: Always
