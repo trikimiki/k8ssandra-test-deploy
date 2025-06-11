@@ -103,10 +103,10 @@ alternatively, you can use AWS secret manager for this
 ### 8.1 create secret with RDS creds
 
 ```
-RDS_SOURCE="jdbc:postgresql://$(aws rds describe-db-instances --region ap-south-1 | jq -r '.DBInstances[] | select(.DBInstanceIdentifier == "rds-for-k8ssandra-test-triki") | .Endpoint.Address'):5432/thingsboard"
+RDS_SOURCE="jdbc:postgresql://$(aws --profile k8ssandra-test-triki rds describe-db-instances --region ap-south-1 | jq -r '.DBInstances[] | select(.DBInstanceIdentifier == "rds-for-k8ssandra-test-triki") | .Endpoint.Address'):5432/thingsboard"
 ```
 ```
-RDS_USER=$(aws rds describe-db-instances --region ap-south-1 | jq -r '.DBInstances[] | select(.DBInstanceIdentifier == "rds-for-k8ssandra-test-triki") | .MasterUsername')
+RDS_USER=$(aws rds --profile k8ssandra-test-triki describe-db-instances --region ap-south-1 | jq -r '.DBInstances[] | select(.DBInstanceIdentifier == "rds-for-k8ssandra-test-triki") | .MasterUsername')
 ```
 ```
 RDS_PASS=<paste master password here>
