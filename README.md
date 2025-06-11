@@ -12,17 +12,17 @@ will use [thingsboard ce](https://thingsboard.io/docs/faq/) as a platfrom to tes
   - [awscli](https://docs.aws.amazon.com/cli/latest/userguide/getting-started-install.html)
 - configure environment:
   ```
-  aws configure
+  aws configure --profile k8ssandra-test-triki
   ```
 
 
 ## step 1 - create EKS cluster and get access with kubectl
 
 ```
-eksctl create cluster -f eks/cluster.yml
+eksctl --profile k8ssandra-test-triki create cluster -f eks/cluster.yml
 ```
 ```
-aws eks update-kubeconfig --region ap-south-1 --name k8ssandra-test-triki
+aws eks --profile k8ssandra-test-triki update-kubeconfig --region ap-south-1 --name k8ssandra-test-triki --alias k8ssandra-test-triki
 ```
 
 ## step 2 - create gp3 storage class, make it default
