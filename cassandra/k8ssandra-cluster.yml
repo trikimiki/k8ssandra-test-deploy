@@ -19,7 +19,7 @@ metadata:
 spec:
   cassandra:
     serverVersion: "5.0.4"
-    clusterName: "Thingsboard Cluster"
+    clusterName: "cassandra"
     datacenters:
       - metadata:
           name: ap-south-1

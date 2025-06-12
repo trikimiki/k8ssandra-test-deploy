@@ -113,14 +113,14 @@ by default thingsboard installs keyspace with RF=1 - so we need to pre-install k
 
 to get cassandra creds:
 ```
-kubectl -n thingsboard get secret thingsboardcluster-superuser -o json | jq -r '.data.username' | base64 --decode
-kubectl -n thingsboard get secret thingsboardcluster-superuser -o json | jq -r '.data.password' | base64 --decode
+kubectl -n thingsboard get secret cassandra-superuser -o json | jq -r '.data.username' | base64 --decode
+kubectl -n thingsboard get secret cassandra-superuser -o json | jq -r '.data.password' | base64 --decode
 ```
 
 run query:
 ```
-kubectl -n thingsboard exec -it thingsboardcluster-ap-south-1-r1a-sts-0 -c cassandra -- cqlsh \
-              -u thingsboardcluster-superuser \
+kubectl -n thingsboard exec -it cassandra-ap-south-1-r1a-sts-0 -c cassandra -- cqlsh \
+              -u cassandra-superuser \
               -e \
                 "CREATE KEYSPACE IF NOT EXISTS thingsboard \
                 WITH replication = { \

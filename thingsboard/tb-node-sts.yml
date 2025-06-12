@@ -108,25 +108,25 @@ spec:
         - name: DATABASE_TS_TYPE
           value: "cassandra"
         - name: CASSANDRA_URL
-          value: "thingsboardcluster-ap-south-1-service:9042"
+          value: "cassandra-ap-south-1-service:9042"
         - name: CASSANDRA_USE_CREDENTIALS
           value: "true"
         - name: CASSANDRA_USERNAME
           valueFrom:
             secretKeyRef:
-              name: thingsboardcluster-superuser
+              name: cassandra-superuser
               key: username
         - name: CASSANDRA_PASSWORD
           valueFrom:
             secretKeyRef:
-              name: thingsboardcluster-superuser
+              name: cassandra-superuser
               key: password
         - name: CASSANDRA_READ_CONSISTENCY_LEVEL
           value: "QUORUM"
         - name: CASSANDRA_WRITE_CONSISTENCY_LEVEL
           value: "QUORUM"
         - name: CASSANDRA_CLUSTER_NAME
-          value: "Thingsboard Cluster"
+          value: "cassandra"
         - name: CASSANDRA_LOCAL_DATACENTER
           value: "ap-south-1"
         - name: CASSANDRA_KEYSPACE_NAME
