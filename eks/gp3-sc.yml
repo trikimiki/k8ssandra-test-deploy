@@ -11,3 +11,25 @@ provisioner: ebs.csi.aws.com
 volumeBindingMode: WaitForFirstConsumer
 parameters:
   type: gp3
+
+---
+# https://forum.k8ssandra.io/t/how-to-reuse-the-same-pv-pvc-when-we-restart-the-cluster-or-cassandra-datacenter/532
+# k8ssandra automatically deletes PVC with cluster resource deletion
+# there is no delete policy available from k8ssandra side, so we need to ensure volumes are persisted via StorageClass
+# if you need to re-bound PVs to PVCs after k8ssandra was deleted:
+#   check that PVs have same names, labels and size as desribed in k8ssandra CRDs
+#   patch your PVs:
+#   kubectl -n thingsboard patch pv pvc-xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx -p '{"spec":{"claimRef": null}}'
+#   after you re-deploy k8ssandra cluster - old PVs should automatically bound to new PVCs
+kind: StorageClass
+apiVersion: storage.k8s.io/v1
+metadata:
+  name: gp3-retainable
+  annotations:
+    storageclass.kubernetes.io/is-default-class: "false"
+allowVolumeExpansion: true
+provisioner: ebs.csi.aws.com
+reclaimPolicy: Retain
+volumeBindingMode: WaitForFirstConsumer
+parameters:
+  type: gp3
