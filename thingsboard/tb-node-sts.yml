@@ -108,7 +108,7 @@ spec:
         - name: DATABASE_TS_TYPE
           value: "cassandra"
         - name: CASSANDRA_URL
-          value: "thingsboardcluster-datacenter1-service:9042"
+          value: "thingsboardcluster-ap-south-1-service:9042"
         - name: CASSANDRA_USE_CREDENTIALS
           value: "true"
         - name: CASSANDRA_USERNAME
@@ -125,6 +125,12 @@ spec:
           value: "QUORUM"
         - name: CASSANDRA_WRITE_CONSISTENCY_LEVEL
           value: "QUORUM"
+        - name: CASSANDRA_CLUSTER_NAME
+          value: "Thingsboard Cluster"
+        - name: CASSANDRA_LOCAL_DATACENTER
+          value: "ap-south-1"
+        - name: CASSANDRA_KEYSPACE_NAME
+          value: "thingsboard"
         volumeMounts:
           - mountPath: /config
             name: tb-node-config

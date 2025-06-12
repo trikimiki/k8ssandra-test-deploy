@@ -79,16 +79,6 @@ kubectl apply -f thingsboard/namespace.yml
 kubectl apply -f cassandra/k8ssandra-cluster.yml
 ```
 
-you can use the following to get into `cqlsh` console:
-```
-kubectl -n thingsboard exec -it thingsboardcluster-datacenter1-r1a-sts-0 -c cassandra -- cqlsh -u <username>
-```
-to get creds:
-```
-kubectl -n thingsboard get secret thingsboardcluster-superuser -o json | jq -r '.data.username' | base64 --decode
-kubectl -n thingsboard get secret thingsboardcluster-superuser -o json | jq -r '.data.password' | base64 --decode
-```
-
 ## step 7 - create AWS RDS (Postgres) instance for thingsboard
 AWS Console -> Aurora and RDS -> Create database
 
@@ -118,13 +108,34 @@ kubectl create -n thingsboard secret generic rds-secrets \
   --from-literal=rds-password="$RDS_PASS"
 ```
 
-### 8.2 create thingsboard configmap
+### 8.2 create cassandra keyspace
+by default thingsboard installs keyspace with RF=1 - so we need to pre-install keyspace with proper RF=3
+
+to get cassandra creds:
+```
+kubectl -n thingsboard get secret thingsboardcluster-superuser -o json | jq -r '.data.username' | base64 --decode
+kubectl -n thingsboard get secret thingsboardcluster-superuser -o json | jq -r '.data.password' | base64 --decode
+```
+
+run query:
+```
+kubectl -n thingsboard exec -it thingsboardcluster-ap-south-1-r1a-sts-0 -c cassandra -- cqlsh \
+              -u thingsboardcluster-superuser \
+              -e \
+                "CREATE KEYSPACE IF NOT EXISTS thingsboard \
+                WITH replication = { \
+                  'class' : 'NetworkTopologyStrategy', \
+                  'ap-south-1' : '3' \
+                };"
+```
+
+### 8.3 create thingsboard configmap
 
 ```
 kubectl apply -f thingsboard/tb-node-configmap.yml
 ```
 
-### 8.3 install postgres and cassandra data
+### 8.4 install postgres and cassandra data
 
 ```
 cd thingsboard/install
@@ -139,19 +150,19 @@ sudo chmod +x install-tb.sh
 cd ../..
 ```
 
-### 8.4 create and start thingsboard app
+### 8.5 create and start thingsboard app
 
 ```
 kubectl apply -f thingsboard/tb-node-sts.yml
 ```
 
-### 8.5 create AWS load-balancer
+### 9 create AWS load-balancer
 
 ```
 kubectl apply -f thingsboard/tb-nlb.yml
 ```
 
-## step 9 access thingsboard
+## step 10 access thingsboard
 
 you can access web UI from browser via `EXTERNAL-IP` link from:
 ```

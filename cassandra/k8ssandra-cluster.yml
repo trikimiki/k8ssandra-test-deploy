@@ -22,7 +22,7 @@ spec:
     clusterName: "Thingsboard Cluster"
     datacenters:
       - metadata:
-          name: datacenter1
+          name: ap-south-1
         size: 3
         racks:
           - name: r1a
