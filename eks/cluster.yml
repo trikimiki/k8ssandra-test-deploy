@@ -29,7 +29,7 @@ managedNodeGroups:
     volumeType: gp3
     volumeSize: 30
 
-  - name: k8ssandra-r1a
+  - name: cassandra-r1a
     instanceType: t4g.large
     desiredCapacity: 1
     minSize: 1
@@ -40,7 +40,7 @@ managedNodeGroups:
     volumeType: gp3
     volumeSize: 30
 
-  - name: k8ssandra-r1b
+  - name: cassandra-r1b
     instanceType: t4g.large
     desiredCapacity: 1
     minSize: 1
@@ -51,7 +51,7 @@ managedNodeGroups:
     volumeType: gp3
     volumeSize: 30
 
-  - name: k8ssandra-r1c
+  - name: cassandra-r1c
     instanceType: t4g.large
     desiredCapacity: 1
     minSize: 1
