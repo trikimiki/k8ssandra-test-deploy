@@ -19,7 +19,10 @@ will use [thingsboard ce](https://thingsboard.io/docs/faq/) as a platfrom to tes
 ## step 1 - create EKS cluster and get access with kubectl
 
 ```
-eksctl --profile k8ssandra-test-triki create cluster -f eks/cluster.yml
+eksctl --profile k8ssandra-test-triki create cluster -f eks/cluster.yml \
+  --set-kubeconfig-context=false \
+  --auto-kubeconfig=false \
+  --write-kubeconfig=false
 ```
 ```
 aws eks --profile k8ssandra-test-triki update-kubeconfig --region ap-south-1 --name k8ssandra-test-triki --alias k8ssandra-test-triki
