@@ -105,7 +105,7 @@ RDS_USER=$(aws rds --profile k8ssandra-test-triki describe-db-instances --region
 RDS_PASS=<paste master password here>
 ```
 ```
-kubectl create -n thingsboard secret generic rds-secrets \
+kubectl create -n thingsboard secret generic tb-rds-secret \
   --from-literal=rds-datasource="$RDS_SOURCE" \
   --from-literal=rds-username="$RDS_USER" \
   --from-literal=rds-password="$RDS_PASS"
@@ -159,7 +159,7 @@ cd ../..
 kubectl apply -f thingsboard/tb-node-sts.yml
 ```
 
-### 9 create AWS load-balancer
+## step 9 create AWS load-balancer
 
 ```
 kubectl apply -f thingsboard/tb-nlb.yml
