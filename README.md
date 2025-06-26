@@ -159,13 +159,13 @@ cd ../..
 kubectl apply -f thingsboard/tb-node-sts.yml
 ```
 
-## step 9 create AWS load-balancer
+## step 9 - create AWS load-balancer
 
 ```
 kubectl apply -f thingsboard/tb-nlb.yml
 ```
 
-## step 10 access thingsboard
+## step 10 - access thingsboard
 
 you can access web UI from browser via `EXTERNAL-IP` link from:
 ```
