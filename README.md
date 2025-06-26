@@ -182,3 +182,23 @@ default credentials are:
 # K8SSANDRA MAINTENANCE
 
 ## TBC
+
+medusa s3 secret snippet:
+```
+AWS_KEY_ID=demo12345
+AWS_KEY_SECRET=demo12345
+
+kubectl apply -f - <<EOF
+apiVersion: v1
+kind: Secret
+metadata:
+  name: medusa-bucket-key
+  namespace: thingsboard
+type: Opaque
+stringData:
+  credentials: |
+    [default]
+    aws_access_key_id = ${AWS_KEY_ID}
+    aws_secret_access_key = ${AWS_KEY_SECRET}
+EOF
+```

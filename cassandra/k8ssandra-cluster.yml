@@ -1,22 +1,10 @@
-# TODO - make it console one-liner instead?
-# apiVersion: v1
-# kind: Secret
-# metadata:
-#   name: medusa-bucket-key
-#   namespace: thingsboard
-# type: Opaque
-# stringData:
-#   credentials: |-
-#     [default]
-#     aws_access_key_id = demo12345
-#     aws_secret_access_key = demo12345
-# ---
 apiVersion: k8ssandra.io/v1alpha1
 kind: K8ssandraCluster
 metadata:
   name: cassandra-cluster
   namespace: thingsboard
 spec:
+
   cassandra:
     serverVersion: "5.0.4"
     clusterName: "cassandra"
@@ -59,17 +47,36 @@ spec:
     telemetry:
       prometheus:
         enabled: true
-  # medusa:
-  #   storageProperties:
-  #     storageProvider: s3_compatible
-  #     storageSecretRef:
-  #       name: medusa-bucket-key
-  #     bucketName: k8ssandra-medusa
-  #     prefix: test
-  #     host: change-me
-  #     secure: false
-  # reaper:
-  #   keyspace: reaper_db
-  #   telemetry:
-  #     prometheus:
-  #       enabled: true
+
+  medusa:
+    containerResources: # TODO - tune this
+      requests:         #   I have
+        cpu: 10m        #       no
+        memory: 100Mi   #         idea
+      limits:           #           what
+        cpu: 1000m      #             should be
+        memory: 750Mi   #               here
+    initContainerResources:
+      requests:         #   here
+        cpu: 10m        #       as
+        memory: 10Mi    #         well
+      limits:           #
+        cpu: 100m       #           (those should be tiny I think)
+        memory: 50Mi    #
+    storageProperties:
+      storageProvider: s3
+      region: ap-south-1
+      storageSecretRef:
+        name: medusa-s3-secret
+      prefix: k8ssandra-test-triki-backups # aka top-level folder, should be alias of the cluster
+    purgeBackups: false # configure lifecycle on S3 bucket instead
+
+  # TODO - review this, it was barely touched!
+  reaper:
+    autoScheduling:
+      enabled: true
+      initialDelayPeriod: PT10M # wait 10 minutes after startup before first repair poll
+      repairType: AUTO
+    telemetry:
+      prometheus:
+        enabled: true
