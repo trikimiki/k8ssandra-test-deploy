@@ -1,0 +1,12 @@
+# TODO - review this, it was barely touched!
+apiVersion: medusa.k8ssandra.io/v1alpha1
+kind: MedusaBackupSchedule
+metadata:
+  name: daily-diff-backup
+  namespace: thingsboard
+spec:
+  backupSpec:
+    cassandraDatacenter: ap-south-1
+    backupType: differential
+  cronSchedule: "0 2 1-6,8-31 * *" # “At 02:00 on every day-of-month from 1 through 6 and every day-of-month from 8 through 31.”
+  disabled: false

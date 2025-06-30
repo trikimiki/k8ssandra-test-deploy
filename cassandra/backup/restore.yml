@@ -1,0 +1,9 @@
+# TODO - review this, it was barely touched!
+apiVersion: medusa.k8ssandra.io/v1alpha1
+kind: MedusaRestoreJob
+metadata:
+  name: restore-operation
+  namespace: thingsboard
+spec:
+  cassandraDatacenter: ap-south-1
+  backup: <backup-name-here> # aws --profile=k8ssandra-test-triki s3 ls k8ssandra-test-triki-backups --recursive

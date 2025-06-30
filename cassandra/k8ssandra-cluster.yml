@@ -68,7 +68,7 @@ spec:
       region: ap-south-1
       storageSecretRef:
         name: medusa-s3-secret
-      prefix: k8ssandra-test-triki-backups # aka top-level folder, should be alias of the cluster
+      bucketName: k8ssandra-test-triki-backups
     purgeBackups: false # configure lifecycle on S3 bucket instead
 
   # TODO - review this, it was barely touched!
