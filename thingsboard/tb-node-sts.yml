@@ -69,13 +69,13 @@ spec:
         resources:
           requests:
             cpu: 1000m
-            memory: 6Gi
+            memory: 5Gi
           limits:
             cpu: 2000m
-            memory: 6Gi
+            memory: 5Gi
         env:
         - name: JAVA_OPTS
-          value: "-Xms4G -Xmx4G -Xss512k -XX:+AlwaysPreTouch"
+          value: "-Xms3500M -Xmx3500M -Xss512k -XX:+AlwaysPreTouch"
         - name: TB_SERVICE_TYPE
           value: "monolith"
         - name: TB_QUEUE_TYPE

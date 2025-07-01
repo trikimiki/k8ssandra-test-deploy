@@ -23,7 +23,10 @@ managedNodeGroups:
     desiredCapacity: 1
     minSize: 1
     maxSize: 1
-    labels: { tb-node: allowed }
+    labels: {
+      tb-node: allowed,
+      cassandra-reaper: allowed
+    }
     availabilityZones: ["ap-south-1a"]
     privateNetworking: true
     volumeType: gp3

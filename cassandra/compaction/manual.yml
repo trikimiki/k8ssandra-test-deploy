@@ -1,0 +1,17 @@
+apiVersion: control.k8ssandra.io/v1alpha1
+kind: K8ssandraTask
+metadata:
+  name: manual-compaction
+  namespace: thingsboard
+spec:
+  cluster:
+    name: cassandra-cluster
+  datacenters:
+    - ap-south-1
+  template:
+    jobs:
+      - name: manual-compact-job
+        command: "nodetool compact"
+        args:
+          keyspace_name: thingsboard
+          split_output: true

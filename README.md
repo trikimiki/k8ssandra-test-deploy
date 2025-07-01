@@ -192,7 +192,7 @@ kubectl apply -f - <<EOF
 apiVersion: v1
 kind: Secret
 metadata:
-  name: medusa-bucket-key
+  name: medusa-s3-secret
   namespace: thingsboard
 type: Opaque
 stringData:
@@ -202,3 +202,6 @@ stringData:
     aws_secret_access_key = ${AWS_KEY_SECRET}
 EOF
 ```
+
+TODO - check if backups arent persisted locally
+TODO - instrucions for dedicated ami for medusa s3

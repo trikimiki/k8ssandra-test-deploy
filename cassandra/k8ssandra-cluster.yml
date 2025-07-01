@@ -71,12 +71,34 @@ spec:
       bucketName: k8ssandra-test-triki-backups
     purgeBackups: false # configure lifecycle on S3 bucket instead
 
-  # TODO - review this, it was barely touched!
   reaper:
+    affinity:
+      nodeAffinity:
+        requiredDuringSchedulingIgnoredDuringExecution:
+          nodeSelectorTerms:
+            - matchExpressions:
+              - key: cassandra-reaper
+                operator: In
+                values:
+                  - allowed
+    deploymentMode: SINGLE
     autoScheduling:
+      # see https://cassandra-reaper.io/docs/configuration/reaper_specific/#autoscheduling
       enabled: true
-      initialDelayPeriod: PT10M # wait 10 minutes after startup before first repair poll
-      repairType: AUTO
+      initialDelayPeriod: PT10M # 10 minutes, default is 15 seconds
+      periodBetweenPolls: PT10M
+      timeBeforeFirstSchedule: PT5M
+      scheduleSpreadPeriod: PT6H
+      repairType: INCREMENTAL
+      percentUnrepairedThreshold: 10
+    resources:          # TODO - tune this
+      requests:         #   I have
+        cpu: 200m       #       no
+        memory: 1Gi     #         idea
+      limits:           #           what
+        cpu: 2000m      #             should be
+        memory: 3Gi     #               here
+    heapSize: 2Gi # default
     telemetry:
       prometheus:
         enabled: true

@@ -7,5 +7,5 @@ spec:
   backupSpec:
     cassandraDatacenter: ap-south-1
     backupType: differential
-  cronSchedule: "0 2 1-6,8-31 * *" # “At 02:00 on every day-of-month from 1 through 6 and every day-of-month from 8 through 31.”
+  cronSchedule: "0 2 1-9,11-19,21-31 * *" # “At 02:00 on every day-of-month from 1 through 9, every day-of-month from 11 through 19, and every day-of-month from 21 through 31.”
   disabled: false
