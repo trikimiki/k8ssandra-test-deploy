@@ -44,9 +44,9 @@ spec:
         resources:
           requests:
             storage: 15Gi
-    telemetry:
-      prometheus:
-        enabled: true
+    # telemetry:
+    #   prometheus:
+    #     enabled: true
 
   medusa:
     containerResources: # TODO - tune this
@@ -99,6 +99,6 @@ spec:
         cpu: 2000m      #             should be
         memory: 3Gi     #               here
     heapSize: 2Gi # default
-    telemetry:
-      prometheus:
-        enabled: true
+    # telemetry:
+    #   prometheus:
+    #     enabled: true
