@@ -38,10 +38,10 @@ spec:
     resources:
       requests:
         cpu: 1000m
-        memory: 6Gi
+        memory: 5Gi
       limits:
         cpu: 2000m
-        memory: 6Gi
+        memory: 5Gi
     env:
     - name: TB_SERVICE_ID
       valueFrom:

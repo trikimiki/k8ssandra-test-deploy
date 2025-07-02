@@ -64,7 +64,7 @@ since thingsboard will need to access cassandra db, we will deploy them both in 
 ```
 helm repo add k8ssandra https://helm.k8ssandra.io/stable
 helm repo update k8ssandra
-helm install k8ssandra-operator --version 1.23.1 k8ssandra/k8ssandra-operator \
+helm install k8ssandra-operator --version 1.24.0 k8ssandra/k8ssandra-operator \
   -n k8ssandra-operator \
   --create-namespace \
   --set global.clusterScoped=true

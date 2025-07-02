@@ -43,12 +43,16 @@ spec:
           - ReadWriteOnce
         resources:
           requests:
-            storage: 15Gi
+            storage: 30Gi
     # telemetry:
     #   prometheus:
     #     enabled: true
 
   medusa:
+    containerImage:
+      name: medusa
+      repository: k8ssandra
+      tag: "0.24.1"
     containerResources: # TODO - tune this
       requests:         #   I have
         cpu: 10m        #       no
@@ -72,6 +76,10 @@ spec:
     purgeBackups: false # configure lifecycle on S3 bucket instead
 
   reaper:
+    containerImage:
+      name: cassandra-reaper
+      repository: thelastpickle
+      tag: "4.0.0-beta4"
     affinity:
       nodeAffinity:
         requiredDuringSchedulingIgnoredDuringExecution:
