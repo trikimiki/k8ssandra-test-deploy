@@ -1,7 +1,10 @@
+# this file is a template - in order to run a manual compaction:
+# DATE=$(date +%Y%m%d-%H%M) envsubst < cassandra/compaction/manual.template.yml | kubectl apply -f -
+# TODO - review this, it was barely touched!
 apiVersion: control.k8ssandra.io/v1alpha1
 kind: K8ssandraTask
 metadata:
-  name: manual-compaction
+  name: manual-compaction-${DATE}
   namespace: thingsboard
 spec:
   cluster:
@@ -10,7 +13,7 @@ spec:
     - ap-south-1
   template:
     jobs:
-      - name: manual-compact-job
+      - name: manual-compact-job-${DATE}
         command: "nodetool compact"
         args:
           keyspace_name: thingsboard
