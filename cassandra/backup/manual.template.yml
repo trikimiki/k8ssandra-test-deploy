@@ -1,0 +1,10 @@
+# this file is a template - in order to run a manual backup:
+# DATE=$(date +%Y%m%d-%H%M) envsubst < cassandra/backup/manual.template.yml | kubectl apply -f -
+apiVersion: medusa.k8ssandra.io/v1alpha1
+kind: MedusaBackupJob
+metadata:
+  name: manual-backup-${DATE}
+  namespace: thingsboard
+spec:
+  cassandraDatacenter: ap-south-1
+  backupType: full # or differential

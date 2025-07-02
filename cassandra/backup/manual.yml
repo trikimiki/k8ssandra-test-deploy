@@ -1,9 +1,0 @@
-# TODO - review this, it was barely touched!
-apiVersion: medusa.k8ssandra.io/v1alpha1
-kind: MedusaBackupJob
-metadata:
-  name: manual-backup
-  namespace: thingsboard
-spec:
-  cassandraDatacenter: ap-south-1
-  backupType: full # or differential
