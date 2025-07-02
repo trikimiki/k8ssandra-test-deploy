@@ -205,3 +205,12 @@ EOF
 
 TODO - check if backups arent persisted locally
 TODO - instrucions for dedicated ami for medusa s3
+
+```
+kubectl port-forward svc/cassandra-ap-south-1-reaper-service 8085:8080
+
+localhost:8085/webui
+
+kubectl get secret cassandra-reaper-ui -o jsonpath='{.data.username}' | base64 --decode
+kubectl get secret cassandra-reaper-ui -o jsonpath='{.data.password}' | base64 --decode
+```
