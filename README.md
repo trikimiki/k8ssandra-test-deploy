@@ -220,3 +220,5 @@ manual backup:
 ```
 DATE=$(date +%Y%m%d-%H%M) envsubst < cassandra/backup/manual.template.yml | kubectl apply -f -
 ```
+
+TODO - Prometheus
