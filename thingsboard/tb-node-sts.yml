@@ -37,30 +37,30 @@ spec:
           requiredDuringSchedulingIgnoredDuringExecution:
             - labelSelector:
                 matchExpressions:
-                  - key: "app"
-                    operator: In
-                    values:
-                      - tb-node
+                - key: "app"
+                  operator: In
+                  values:
+                  - tb-node
               topologyKey: "kubernetes.io/hostname"
       securityContext:
         runAsUser: 799
         runAsNonRoot: true
         fsGroup: 799
       volumes:
-        - name: tb-node-config
-          configMap:
-            name: tb-node-config
-            items:
-            - key: conf
-              path:  thingsboard.conf
-            - key: logback
-              path:  logback.xml
-        - name: tb-node-logs
-          emptyDir: {}
+      - name: tb-node-config
+        configMap:
+          name: tb-node-config
+          items:
+          - key: conf
+            path:  thingsboard.conf
+          - key: logback
+            path:  logback.xml
+      - name: tb-node-logs
+        emptyDir: {}
       containers:
       - name: server
         imagePullPolicy: Always
-        image: thingsboard/tb-node:4.0.1
+        image: thingsboard/tb-node:4.0.2
         ports:
         - containerPort: 8080
           name: http

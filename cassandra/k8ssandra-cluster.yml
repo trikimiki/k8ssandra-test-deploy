@@ -43,7 +43,7 @@ spec:
           - ReadWriteOnce
         resources:
           requests:
-            storage: 30Gi
+            storage: 90Gi # 40gb estimate, leave +- 50% per compaction best practice
     # telemetry:
     #   prometheus:
     #     enabled: true

@@ -1,0 +1,622 @@
+{
+  "ruleChain": {
+    "name": "generator_farm",
+    "type": "CORE",
+    "firstRuleNodeId": null,
+    "root": false,
+    "debugMode": false,
+    "configuration": null,
+    "additionalInfo": {
+      "description": ""
+    }
+  },
+  "metadata": {
+    "version": 12,
+    "firstNodeIndex": null,
+    "nodes": [
+      {
+        "type": "org.thingsboard.rule.engine.transform.TbChangeOriginatorNode",
+        "name": "spread to ttl_7",
+        "debugSettings": {
+          "failuresEnabled": false,
+          "allEnabled": false,
+          "allEnabledUntil": 1751527025340
+        },
+        "singletonMode": false,
+        "queueName": null,
+        "configurationVersion": 0,
+        "configuration": {
+          "originatorSource": "ENTITY",
+          "entityType": "DEVICE",
+          "entityNamePattern": "test_ttl_7_$[number]",
+          "relationsQuery": {
+            "direction": "FROM",
+            "maxLevel": 1,
+            "filters": [
+              {
+                "relationType": "Contains",
+                "entityTypes": [],
+                "negate": false
+              }
+            ],
+            "fetchLastLevelOnly": false
+          }
+        },
+        "additionalInfo": {
+          "description": "",
+          "layoutX": 726,
+          "layoutY": 343
+        }
+      },
+      {
+        "type": "org.thingsboard.rule.engine.telemetry.TbMsgTimeseriesNode",
+        "name": "ttl_7",
+        "debugSettings": {
+          "failuresEnabled": false,
+          "allEnabled": false,
+          "allEnabledUntil": 1751526784007
+        },
+        "singletonMode": false,
+        "queueName": null,
+        "configurationVersion": 1,
+        "configuration": {
+          "processingSettings": {
+            "type": "ON_EVERY_MESSAGE"
+          },
+          "defaultTTL": 604800,
+          "useServerTs": true
+        },
+        "additionalInfo": {
+          "description": "",
+          "layoutX": 1039,
+          "layoutY": 344
+        }
+      },
+      {
+        "type": "org.thingsboard.rule.engine.transform.TbChangeOriginatorNode",
+        "name": "spread to ttl_10",
+        "debugSettings": {
+          "failuresEnabled": false,
+          "allEnabled": false,
+          "allEnabledUntil": 1751359893277
+        },
+        "singletonMode": false,
+        "queueName": null,
+        "configurationVersion": 0,
+        "configuration": {
+          "originatorSource": "ENTITY",
+          "entityType": "DEVICE",
+          "entityNamePattern": "test_ttl_10_$[number]",
+          "relationsQuery": {
+            "direction": "FROM",
+            "maxLevel": 1,
+            "filters": [
+              {
+                "relationType": "Contains",
+                "entityTypes": [],
+                "negate": false
+              }
+            ],
+            "fetchLastLevelOnly": false
+          }
+        },
+        "additionalInfo": {
+          "description": "",
+          "layoutX": 728,
+          "layoutY": 416
+        }
+      },
+      {
+        "type": "org.thingsboard.rule.engine.telemetry.TbMsgTimeseriesNode",
+        "name": "ttl_10",
+        "debugSettings": {
+          "failuresEnabled": false,
+          "allEnabled": false,
+          "allEnabledUntil": 1751359893277
+        },
+        "singletonMode": false,
+        "queueName": null,
+        "configurationVersion": 1,
+        "configuration": {
+          "processingSettings": {
+            "type": "ON_EVERY_MESSAGE"
+          },
+          "defaultTTL": 864000,
+          "useServerTs": true
+        },
+        "additionalInfo": {
+          "description": "",
+          "layoutX": 1041,
+          "layoutY": 417
+        }
+      },
+      {
+        "type": "org.thingsboard.rule.engine.transform.TbChangeOriginatorNode",
+        "name": "spread to ttl_14",
+        "debugSettings": {
+          "failuresEnabled": false,
+          "allEnabled": false,
+          "allEnabledUntil": 1751359893277
+        },
+        "singletonMode": false,
+        "queueName": null,
+        "configurationVersion": 0,
+        "configuration": {
+          "originatorSource": "ENTITY",
+          "entityType": "DEVICE",
+          "entityNamePattern": "test_ttl_14_$[number]",
+          "relationsQuery": {
+            "direction": "FROM",
+            "maxLevel": 1,
+            "filters": [
+              {
+                "relationType": "Contains",
+                "entityTypes": [],
+                "negate": false
+              }
+            ],
+            "fetchLastLevelOnly": false
+          }
+        },
+        "additionalInfo": {
+          "description": "",
+          "layoutX": 730,
+          "layoutY": 489
+        }
+      },
+      {
+        "type": "org.thingsboard.rule.engine.telemetry.TbMsgTimeseriesNode",
+        "name": "ttl_14",
+        "debugSettings": {
+          "failuresEnabled": false,
+          "allEnabled": false,
+          "allEnabledUntil": 1751359893277
+        },
+        "singletonMode": false,
+        "queueName": null,
+        "configurationVersion": 1,
+        "configuration": {
+          "processingSettings": {
+            "type": "ON_EVERY_MESSAGE"
+          },
+          "defaultTTL": 1209600,
+          "useServerTs": true
+        },
+        "additionalInfo": {
+          "description": "",
+          "layoutX": 1043,
+          "layoutY": 490
+        }
+      },
+      {
+        "type": "org.thingsboard.rule.engine.transform.TbChangeOriginatorNode",
+        "name": "spread to ttl_30",
+        "debugSettings": {
+          "failuresEnabled": false,
+          "allEnabled": false,
+          "allEnabledUntil": 1751359893277
+        },
+        "singletonMode": false,
+        "queueName": null,
+        "configurationVersion": 0,
+        "configuration": {
+          "originatorSource": "ENTITY",
+          "entityType": "DEVICE",
+          "entityNamePattern": "test_ttl_30_$[number]",
+          "relationsQuery": {
+            "direction": "FROM",
+            "maxLevel": 1,
+            "filters": [
+              {
+                "relationType": "Contains",
+                "entityTypes": [],
+                "negate": false
+              }
+            ],
+            "fetchLastLevelOnly": false
+          }
+        },
+        "additionalInfo": {
+          "description": "",
+          "layoutX": 728,
+          "layoutY": 566
+        }
+      },
+      {
+        "type": "org.thingsboard.rule.engine.telemetry.TbMsgTimeseriesNode",
+        "name": "ttl_30",
+        "debugSettings": {
+          "failuresEnabled": false,
+          "allEnabled": false,
+          "allEnabledUntil": 1751359893277
+        },
+        "singletonMode": false,
+        "queueName": null,
+        "configurationVersion": 1,
+        "configuration": {
+          "processingSettings": {
+            "type": "ON_EVERY_MESSAGE"
+          },
+          "defaultTTL": 2592000,
+          "useServerTs": true
+        },
+        "additionalInfo": {
+          "description": "",
+          "layoutX": 1041,
+          "layoutY": 567
+        }
+      },
+      {
+        "type": "org.thingsboard.rule.engine.debug.TbMsgGeneratorNode",
+        "name": "random $[number] 1-5",
+        "debugSettings": {
+          "failuresEnabled": false,
+          "allEnabled": false,
+          "allEnabledUntil": 1751526812657
+        },
+        "singletonMode": false,
+        "queueName": null,
+        "configurationVersion": 2,
+        "configuration": {
+          "msgCount": 0,
+          "periodInSeconds": 1,
+          "scriptLang": "JS",
+          "jsScript": "var msg = {\n    number: Math.floor(Math.random() * 5) + 1,\n    random_string0: (Math.random() + 1).toString(36).substring(2),\n    random_string1: (Math.random() + 1).toString(36).substring(2),\n    random_string2: (Math.random() + 1).toString(36).substring(2),\n    random_string3: (Math.random() + 1).toString(36).substring(2),\n    random_string4: (Math.random() + 1).toString(36).substring(2),\n    random_string5: (Math.random() + 1).toString(36).substring(2),\n    random_string6: (Math.random() + 1).toString(36).substring(2),\n    random_string7: (Math.random() + 1).toString(36).substring(2),\n    random_string8: (Math.random() + 1).toString(36).substring(2),\n    random_string9: (Math.random() + 1).toString(36).substring(2)\n};\nvar metadata = { };\nvar msgType = \"POST_TELEMETRY_REQUEST\";\n\nreturn {\n    msg: msg,\n    metadata: metadata,\n    msgType: msgType\n};",
+          "tbelScript": "var msg = { number: Math.floor(Math.random() * 10) + 1 };\nvar metadata = { data: 40 };\nvar msgType = \"POST_TELEMETRY_REQUEST\";\n\nreturn { msg: msg, metadata: metadata, msgType: msgType };",
+          "originatorId": null,
+          "originatorType": "RULE_NODE"
+        },
+        "additionalInfo": {
+          "description": "",
+          "layoutX": 52,
+          "layoutY": 237
+        }
+      },
+      {
+        "type": "org.thingsboard.rule.engine.debug.TbMsgGeneratorNode",
+        "name": "random $[number] 6-10",
+        "debugSettings": {
+          "failuresEnabled": false,
+          "allEnabled": false,
+          "allEnabledUntil": 0
+        },
+        "singletonMode": false,
+        "queueName": null,
+        "configurationVersion": 2,
+        "configuration": {
+          "msgCount": 0,
+          "periodInSeconds": 1,
+          "scriptLang": "JS",
+          "jsScript": "var msg = {\n    number: Math.floor(Math.random() * 5) + 6,\n    random_string0: (Math.random() + 1).toString(36).substring(2),\n    random_string1: (Math.random() + 1).toString(36).substring(2),\n    random_string2: (Math.random() + 1).toString(36).substring(2),\n    random_string3: (Math.random() + 1).toString(36).substring(2),\n    random_string4: (Math.random() + 1).toString(36).substring(2),\n    random_string5: (Math.random() + 1).toString(36).substring(2),\n    random_string6: (Math.random() + 1).toString(36).substring(2),\n    random_string7: (Math.random() + 1).toString(36).substring(2),\n    random_string8: (Math.random() + 1).toString(36).substring(2),\n    random_string9: (Math.random() + 1).toString(36).substring(2)\n};\nvar metadata = { };\nvar msgType = \"POST_TELEMETRY_REQUEST\";\n\nreturn {\n    msg: msg,\n    metadata: metadata,\n    msgType: msgType\n};",
+          "tbelScript": "var msg = { number: Math.floor(Math.random() * 10) + 11 };\nvar metadata = { data: 40 };\nvar msgType = \"POST_TELEMETRY_REQUEST\";\n\nreturn { msg: msg, metadata: metadata, msgType: msgType };",
+          "originatorId": null,
+          "originatorType": "RULE_NODE"
+        },
+        "additionalInfo": {
+          "description": "",
+          "layoutX": 52,
+          "layoutY": 282
+        }
+      },
+      {
+        "type": "org.thingsboard.rule.engine.debug.TbMsgGeneratorNode",
+        "name": "random $[number] 11-15",
+        "debugSettings": {
+          "failuresEnabled": false,
+          "allEnabled": false,
+          "allEnabledUntil": 0
+        },
+        "singletonMode": false,
+        "queueName": null,
+        "configurationVersion": 2,
+        "configuration": {
+          "msgCount": 0,
+          "periodInSeconds": 1,
+          "scriptLang": "JS",
+          "jsScript": "var msg = {\n    number: Math.floor(Math.random() * 5) + 11,\n    random_string0: (Math.random() + 1).toString(36).substring(2),\n    random_string1: (Math.random() + 1).toString(36).substring(2),\n    random_string2: (Math.random() + 1).toString(36).substring(2),\n    random_string3: (Math.random() + 1).toString(36).substring(2),\n    random_string4: (Math.random() + 1).toString(36).substring(2),\n    random_string5: (Math.random() + 1).toString(36).substring(2),\n    random_string6: (Math.random() + 1).toString(36).substring(2),\n    random_string7: (Math.random() + 1).toString(36).substring(2),\n    random_string8: (Math.random() + 1).toString(36).substring(2),\n    random_string9: (Math.random() + 1).toString(36).substring(2)\n};\nvar metadata = { };\nvar msgType = \"POST_TELEMETRY_REQUEST\";\n\nreturn {\n    msg: msg,\n    metadata: metadata,\n    msgType: msgType\n};",
+          "tbelScript": "var msg = { number: Math.floor(Math.random() * 10) + 21 };\nvar metadata = { data: 40 };\nvar msgType = \"POST_TELEMETRY_REQUEST\";\n\nreturn { msg: msg, metadata: metadata, msgType: msgType };",
+          "originatorId": null,
+          "originatorType": "RULE_NODE"
+        },
+        "additionalInfo": {
+          "description": "",
+          "layoutX": 52,
+          "layoutY": 327
+        }
+      },
+      {
+        "type": "org.thingsboard.rule.engine.debug.TbMsgGeneratorNode",
+        "name": "random $[number] 16-20",
+        "debugSettings": {
+          "failuresEnabled": false,
+          "allEnabled": false,
+          "allEnabledUntil": 0
+        },
+        "singletonMode": false,
+        "queueName": null,
+        "configurationVersion": 2,
+        "configuration": {
+          "msgCount": 0,
+          "periodInSeconds": 1,
+          "scriptLang": "JS",
+          "jsScript": "var msg = {\n    number: Math.floor(Math.random() * 5) + 16,\n    random_string0: (Math.random() + 1).toString(36).substring(2),\n    random_string1: (Math.random() + 1).toString(36).substring(2),\n    random_string2: (Math.random() + 1).toString(36).substring(2),\n    random_string3: (Math.random() + 1).toString(36).substring(2),\n    random_string4: (Math.random() + 1).toString(36).substring(2),\n    random_string5: (Math.random() + 1).toString(36).substring(2),\n    random_string6: (Math.random() + 1).toString(36).substring(2),\n    random_string7: (Math.random() + 1).toString(36).substring(2),\n    random_string8: (Math.random() + 1).toString(36).substring(2),\n    random_string9: (Math.random() + 1).toString(36).substring(2)\n};\nvar metadata = { };\nvar msgType = \"POST_TELEMETRY_REQUEST\";\n\nreturn {\n    msg: msg,\n    metadata: metadata,\n    msgType: msgType\n};",
+          "tbelScript": "var msg = { number: Math.floor(Math.random() * 10) + 31 };\nvar metadata = { data: 40 };\nvar msgType = \"POST_TELEMETRY_REQUEST\";\n\nreturn { msg: msg, metadata: metadata, msgType: msgType };",
+          "originatorId": null,
+          "originatorType": "RULE_NODE"
+        },
+        "additionalInfo": {
+          "description": "",
+          "layoutX": 52,
+          "layoutY": 372
+        }
+      },
+      {
+        "type": "org.thingsboard.rule.engine.debug.TbMsgGeneratorNode",
+        "name": "random $[number] 21-25",
+        "debugSettings": {
+          "failuresEnabled": false,
+          "allEnabled": false,
+          "allEnabledUntil": 0
+        },
+        "singletonMode": false,
+        "queueName": null,
+        "configurationVersion": 2,
+        "configuration": {
+          "msgCount": 0,
+          "periodInSeconds": 1,
+          "scriptLang": "JS",
+          "jsScript": "var msg = {\n    number: Math.floor(Math.random() * 5) + 21,\n    random_string0: (Math.random() + 1).toString(36).substring(2),\n    random_string1: (Math.random() + 1).toString(36).substring(2),\n    random_string2: (Math.random() + 1).toString(36).substring(2),\n    random_string3: (Math.random() + 1).toString(36).substring(2),\n    random_string4: (Math.random() + 1).toString(36).substring(2),\n    random_string5: (Math.random() + 1).toString(36).substring(2),\n    random_string6: (Math.random() + 1).toString(36).substring(2),\n    random_string7: (Math.random() + 1).toString(36).substring(2),\n    random_string8: (Math.random() + 1).toString(36).substring(2),\n    random_string9: (Math.random() + 1).toString(36).substring(2)\n};\nvar metadata = { };\nvar msgType = \"POST_TELEMETRY_REQUEST\";\n\nreturn {\n    msg: msg,\n    metadata: metadata,\n    msgType: msgType\n};",
+          "tbelScript": "var msg = { number: Math.floor(Math.random() * 10) + 41 };\nvar metadata = { data: 40 };\nvar msgType = \"POST_TELEMETRY_REQUEST\";\n\nreturn { msg: msg, metadata: metadata, msgType: msgType };",
+          "originatorId": null,
+          "originatorType": "RULE_NODE"
+        },
+        "additionalInfo": {
+          "description": "",
+          "layoutX": 52,
+          "layoutY": 417
+        }
+      },
+      {
+        "type": "org.thingsboard.rule.engine.debug.TbMsgGeneratorNode",
+        "name": "random $[number] 26-30",
+        "debugSettings": {
+          "failuresEnabled": false,
+          "allEnabled": false,
+          "allEnabledUntil": 1751528492028
+        },
+        "singletonMode": false,
+        "queueName": null,
+        "configurationVersion": 2,
+        "configuration": {
+          "msgCount": 0,
+          "periodInSeconds": 1,
+          "scriptLang": "JS",
+          "jsScript": "var msg = {\n    number: Math.floor(Math.random() * 5) + 26,\n    random_string0: (Math.random() + 1).toString(36).substring(2),\n    random_string1: (Math.random() + 1).toString(36).substring(2),\n    random_string2: (Math.random() + 1).toString(36).substring(2),\n    random_string3: (Math.random() + 1).toString(36).substring(2),\n    random_string4: (Math.random() + 1).toString(36).substring(2),\n    random_string5: (Math.random() + 1).toString(36).substring(2),\n    random_string6: (Math.random() + 1).toString(36).substring(2),\n    random_string7: (Math.random() + 1).toString(36).substring(2),\n    random_string8: (Math.random() + 1).toString(36).substring(2),\n    random_string9: (Math.random() + 1).toString(36).substring(2)\n};\nvar metadata = { };\nvar msgType = \"POST_TELEMETRY_REQUEST\";\n\nreturn {\n    msg: msg,\n    metadata: metadata,\n    msgType: msgType\n};",
+          "tbelScript": "var msg = { number: Math.floor(Math.random() * 10) + 1 };\nvar metadata = { data: 40 };\nvar msgType = \"POST_TELEMETRY_REQUEST\";\n\nreturn { msg: msg, metadata: metadata, msgType: msgType };",
+          "originatorId": null,
+          "originatorType": "RULE_NODE"
+        },
+        "additionalInfo": {
+          "description": "",
+          "layoutX": 51,
+          "layoutY": 462
+        }
+      },
+      {
+        "type": "org.thingsboard.rule.engine.debug.TbMsgGeneratorNode",
+        "name": "random $[number] 31-35",
+        "debugSettings": {
+          "failuresEnabled": false,
+          "allEnabled": false,
+          "allEnabledUntil": 1751528492028
+        },
+        "singletonMode": false,
+        "queueName": null,
+        "configurationVersion": 2,
+        "configuration": {
+          "msgCount": 0,
+          "periodInSeconds": 1,
+          "scriptLang": "JS",
+          "jsScript": "var msg = {\n    number: Math.floor(Math.random() * 5) + 31,\n    random_string0: (Math.random() + 1).toString(36).substring(2),\n    random_string1: (Math.random() + 1).toString(36).substring(2),\n    random_string2: (Math.random() + 1).toString(36).substring(2),\n    random_string3: (Math.random() + 1).toString(36).substring(2),\n    random_string4: (Math.random() + 1).toString(36).substring(2),\n    random_string5: (Math.random() + 1).toString(36).substring(2),\n    random_string6: (Math.random() + 1).toString(36).substring(2),\n    random_string7: (Math.random() + 1).toString(36).substring(2),\n    random_string8: (Math.random() + 1).toString(36).substring(2),\n    random_string9: (Math.random() + 1).toString(36).substring(2)\n};\nvar metadata = { };\nvar msgType = \"POST_TELEMETRY_REQUEST\";\n\nreturn {\n    msg: msg,\n    metadata: metadata,\n    msgType: msgType\n};",
+          "tbelScript": "var msg = { number: Math.floor(Math.random() * 10) + 1 };\nvar metadata = { data: 40 };\nvar msgType = \"POST_TELEMETRY_REQUEST\";\n\nreturn { msg: msg, metadata: metadata, msgType: msgType };",
+          "originatorId": null,
+          "originatorType": "RULE_NODE"
+        },
+        "additionalInfo": {
+          "description": "",
+          "layoutX": 51,
+          "layoutY": 507
+        }
+      },
+      {
+        "type": "org.thingsboard.rule.engine.debug.TbMsgGeneratorNode",
+        "name": "random $[number] 36-40",
+        "debugSettings": {
+          "failuresEnabled": false,
+          "allEnabled": false,
+          "allEnabledUntil": 1751528492028
+        },
+        "singletonMode": false,
+        "queueName": null,
+        "configurationVersion": 2,
+        "configuration": {
+          "msgCount": 0,
+          "periodInSeconds": 1,
+          "scriptLang": "JS",
+          "jsScript": "var msg = {\n    number: Math.floor(Math.random() * 5) + 36,\n    random_string0: (Math.random() + 1).toString(36).substring(2),\n    random_string1: (Math.random() + 1).toString(36).substring(2),\n    random_string2: (Math.random() + 1).toString(36).substring(2),\n    random_string3: (Math.random() + 1).toString(36).substring(2),\n    random_string4: (Math.random() + 1).toString(36).substring(2),\n    random_string5: (Math.random() + 1).toString(36).substring(2),\n    random_string6: (Math.random() + 1).toString(36).substring(2),\n    random_string7: (Math.random() + 1).toString(36).substring(2),\n    random_string8: (Math.random() + 1).toString(36).substring(2),\n    random_string9: (Math.random() + 1).toString(36).substring(2)\n};\nvar metadata = { };\nvar msgType = \"POST_TELEMETRY_REQUEST\";\n\nreturn {\n    msg: msg,\n    metadata: metadata,\n    msgType: msgType\n};",
+          "tbelScript": "var msg = { number: Math.floor(Math.random() * 10) + 1 };\nvar metadata = { data: 40 };\nvar msgType = \"POST_TELEMETRY_REQUEST\";\n\nreturn { msg: msg, metadata: metadata, msgType: msgType };",
+          "originatorId": null,
+          "originatorType": "RULE_NODE"
+        },
+        "additionalInfo": {
+          "description": "",
+          "layoutX": 50,
+          "layoutY": 552
+        }
+      },
+      {
+        "type": "org.thingsboard.rule.engine.debug.TbMsgGeneratorNode",
+        "name": "random $[number] 41-45",
+        "debugSettings": {
+          "failuresEnabled": false,
+          "allEnabled": false,
+          "allEnabledUntil": 1751528492028
+        },
+        "singletonMode": false,
+        "queueName": null,
+        "configurationVersion": 2,
+        "configuration": {
+          "msgCount": 0,
+          "periodInSeconds": 1,
+          "scriptLang": "JS",
+          "jsScript": "var msg = {\n    number: Math.floor(Math.random() * 5) + 41,\n    random_string0: (Math.random() + 1).toString(36).substring(2),\n    random_string1: (Math.random() + 1).toString(36).substring(2),\n    random_string2: (Math.random() + 1).toString(36).substring(2),\n    random_string3: (Math.random() + 1).toString(36).substring(2),\n    random_string4: (Math.random() + 1).toString(36).substring(2),\n    random_string5: (Math.random() + 1).toString(36).substring(2),\n    random_string6: (Math.random() + 1).toString(36).substring(2),\n    random_string7: (Math.random() + 1).toString(36).substring(2),\n    random_string8: (Math.random() + 1).toString(36).substring(2),\n    random_string9: (Math.random() + 1).toString(36).substring(2)\n};\nvar metadata = { };\nvar msgType = \"POST_TELEMETRY_REQUEST\";\n\nreturn {\n    msg: msg,\n    metadata: metadata,\n    msgType: msgType\n};",
+          "tbelScript": "var msg = { number: Math.floor(Math.random() * 10) + 1 };\nvar metadata = { data: 40 };\nvar msgType = \"POST_TELEMETRY_REQUEST\";\n\nreturn { msg: msg, metadata: metadata, msgType: msgType };",
+          "originatorId": null,
+          "originatorType": "RULE_NODE"
+        },
+        "additionalInfo": {
+          "description": "",
+          "layoutX": 50,
+          "layoutY": 598
+        }
+      },
+      {
+        "type": "org.thingsboard.rule.engine.debug.TbMsgGeneratorNode",
+        "name": "random $[number] 46-50",
+        "debugSettings": {
+          "failuresEnabled": false,
+          "allEnabled": false,
+          "allEnabledUntil": 1751528492028
+        },
+        "singletonMode": false,
+        "queueName": null,
+        "configurationVersion": 2,
+        "configuration": {
+          "msgCount": 0,
+          "periodInSeconds": 1,
+          "scriptLang": "JS",
+          "jsScript": "var msg = {\n    number: Math.floor(Math.random() * 5) + 46,\n    random_string0: (Math.random() + 1).toString(36).substring(2),\n    random_string1: (Math.random() + 1).toString(36).substring(2),\n    random_string2: (Math.random() + 1).toString(36).substring(2),\n    random_string3: (Math.random() + 1).toString(36).substring(2),\n    random_string4: (Math.random() + 1).toString(36).substring(2),\n    random_string5: (Math.random() + 1).toString(36).substring(2),\n    random_string6: (Math.random() + 1).toString(36).substring(2),\n    random_string7: (Math.random() + 1).toString(36).substring(2),\n    random_string8: (Math.random() + 1).toString(36).substring(2),\n    random_string9: (Math.random() + 1).toString(36).substring(2)\n};\nvar metadata = { };\nvar msgType = \"POST_TELEMETRY_REQUEST\";\n\nreturn {\n    msg: msg,\n    metadata: metadata,\n    msgType: msgType\n};",
+          "tbelScript": "var msg = { number: Math.floor(Math.random() * 10) + 1 };\nvar metadata = { data: 40 };\nvar msgType = \"POST_TELEMETRY_REQUEST\";\n\nreturn { msg: msg, metadata: metadata, msgType: msgType };",
+          "originatorId": null,
+          "originatorType": "RULE_NODE"
+        },
+        "additionalInfo": {
+          "description": "",
+          "layoutX": 48,
+          "layoutY": 644
+        }
+      },
+      {
+        "type": "org.thingsboard.rule.engine.transform.TbTransformMsgNode",
+        "name": "pass_through",
+        "debugSettings": null,
+        "singletonMode": false,
+        "queueName": null,
+        "configurationVersion": 0,
+        "configuration": {
+          "scriptLang": "JS",
+          "jsScript": "return {msg: msg, metadata: metadata, msgType: msgType};",
+          "tbelScript": "return {msg: msg, metadata: metadata, msgType: msgType};"
+        },
+        "additionalInfo": {
+          "description": "",
+          "layoutX": 441,
+          "layoutY": 449
+        }
+      }
+    ],
+    "connections": [
+      {
+        "fromIndex": 0,
+        "toIndex": 1,
+        "type": "Success"
+      },
+      {
+        "fromIndex": 2,
+        "toIndex": 3,
+        "type": "Success"
+      },
+      {
+        "fromIndex": 4,
+        "toIndex": 5,
+        "type": "Success"
+      },
+      {
+        "fromIndex": 6,
+        "toIndex": 7,
+        "type": "Success"
+      },
+      {
+        "fromIndex": 8,
+        "toIndex": 18,
+        "type": "Success"
+      },
+      {
+        "fromIndex": 9,
+        "toIndex": 18,
+        "type": "Success"
+      },
+      {
+        "fromIndex": 10,
+        "toIndex": 18,
+        "type": "Success"
+      },
+      {
+        "fromIndex": 11,
+        "toIndex": 18,
+        "type": "Success"
+      },
+      {
+        "fromIndex": 12,
+        "toIndex": 18,
+        "type": "Success"
+      },
+      {
+        "fromIndex": 13,
+        "toIndex": 18,
+        "type": "Success"
+      },
+      {
+        "fromIndex": 14,
+        "toIndex": 18,
+        "type": "Success"
+      },
+      {
+        "fromIndex": 15,
+        "toIndex": 18,
+        "type": "Success"
+      },
+      {
+        "fromIndex": 16,
+        "toIndex": 18,
+        "type": "Success"
+      },
+      {
+        "fromIndex": 17,
+        "toIndex": 18,
+        "type": "Success"
+      },
+      {
+        "fromIndex": 18,
+        "toIndex": 0,
+        "type": "Success"
+      },
+      {
+        "fromIndex": 18,
+        "toIndex": 2,
+        "type": "Success"
+      },
+      {
+        "fromIndex": 18,
+        "toIndex": 4,
+        "type": "Success"
+      },
+      {
+        "fromIndex": 18,
+        "toIndex": 6,
+        "type": "Success"
+      }
+    ],
+    "ruleChainConnections": null
+  }
+}

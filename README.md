@@ -222,3 +222,17 @@ DATE=$(date +%Y%m%d-%H%M) envsubst < cassandra/backup/manual.template.yml | kube
 ```
 
 TODO - Prometheus
+
+
+thingsboard data generators:
+```
+login as tenant@thingsboard.org
+
+entities -> devices -> "+" -> import device -> use "devices.csv"
+
+rule chains -> "+" -> import rule chain -> use "rule-chain.json"
+
+this will generate 440 key-values saved to cassandra per second (40 integers and 400 strings) - totalling to ~2.6gb of data written daily, with per-row TTL applied for 7, 10, 14 and 30 days (equally) - total DB size (after 1 month TTL "kicks in") should be about 40gb
+```
+
+troubleshooting: https://docs.k8ssandra.io/tasks/troubleshoot/
