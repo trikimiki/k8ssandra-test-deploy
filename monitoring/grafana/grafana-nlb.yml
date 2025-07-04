@@ -1,8 +1,8 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: tb-nlb
-  namespace: thingsboard
+  name: grafana-nlb
+  namespace: monitoring
   annotations:
     service.beta.kubernetes.io/aws-load-balancer-type: "nlb"
     service.beta.kubernetes.io/aws-load-balancer-cross-zone-load-balancing-enabled: "true"
@@ -12,11 +12,8 @@ spec:
   type: LoadBalancer
   externalTrafficPolicy: Local
   selector:
-    app: tb-node
+    app: grafana
   ports:
   - port: 80
-    targetPort: 8080
-    name: http
-  - port: 1883
-    targetPort: 1883
-    name: mqtt
+    targetPort: 3000
+    name: grafana

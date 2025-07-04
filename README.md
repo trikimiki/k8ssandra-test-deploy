@@ -236,3 +236,5 @@ this will generate 440 key-values saved to cassandra per second (40 integers and
 ```
 
 troubleshooting: https://docs.k8ssandra.io/tasks/troubleshoot/
+
+monitoring - i will do mcac (or vector?) expose + separate prometheus deployment; k8ssandra could also deploy prometheus as part of k8ssandracluster, see https://docs.k8ssandra.io/components/metrics-collector/

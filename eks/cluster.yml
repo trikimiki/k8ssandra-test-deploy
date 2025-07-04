@@ -65,6 +65,17 @@ managedNodeGroups:
     volumeType: gp3
     volumeSize: 30
 
+  - name: monitoring
+    instanceType: t4g.small
+    desiredCapacity: 1
+    minSize: 1
+    maxSize: 1
+    labels: { monitoring: allowed }
+    availabilityZones: ["ap-south-1a"]
+    privateNetworking: true
+    volumeType: gp3
+    volumeSize: 30
+
 addons:
   - name: aws-ebs-csi-driver
     wellKnownPolicies:      # add IAM and service account
