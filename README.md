@@ -235,6 +235,8 @@ rule chains -> "+" -> import rule chain -> use "rule-chain.json"
 this will generate 440 key-values saved to cassandra per second (40 integers and 400 strings) - totalling to ~2.6gb of data written daily, with per-row TTL applied for 7, 10, 14 and 30 days (equally) - total DB size (after 1 month TTL "kicks in") should be about 40gb
 ```
 
+^^^ explain medusa/reaper/cassandra resources limits/request were done per this dataload
+
 troubleshooting: https://docs.k8ssandra.io/tasks/troubleshoot/
 
 monitoring - i will do mcac (or vector?) expose + separate prometheus deployment; k8ssandra could also deploy prometheus as part of k8ssandracluster, see https://docs.k8ssandra.io/components/metrics-collector/
