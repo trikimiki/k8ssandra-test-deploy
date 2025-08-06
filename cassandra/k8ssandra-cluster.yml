@@ -53,20 +53,20 @@ spec:
       name: medusa
       repository: k8ssandra
       tag: "0.24.1"
-    containerResources: # TODO - tune this
-      requests:         #   I have
-        cpu: 10m        #       no
-        memory: 100Mi   #         idea
-      limits:           #           what
-        cpu: 1000m      #             should be
-        memory: 750Mi   #               here
+    containerResources:
+      requests:
+        cpu: 200m
+        memory: 500Mi
+      limits:
+        cpu: 500m
+        memory: 750Mi
     initContainerResources:
-      requests:         #   here
-        cpu: 10m        #       as
-        memory: 10Mi    #         well
-      limits:           #
-        cpu: 100m       #           (those should be tiny I think)
-        memory: 50Mi    #
+      requests:
+        cpu: 10m
+        memory: 10Mi
+      limits:
+        cpu: 100m
+        memory: 50Mi
     storageProperties:
       storageProvider: s3
       region: ap-south-1
@@ -99,13 +99,13 @@ spec:
       scheduleSpreadPeriod: PT6H
       repairType: INCREMENTAL
       percentUnrepairedThreshold: 10
-    resources:          # TODO - tune this
-      requests:         #   I have
-        cpu: 200m       #       no
-        memory: 1Gi     #         idea
-      limits:           #           what
-        cpu: 2000m      #             should be
-        memory: 3Gi     #               here
+    resources:
+      requests:
+        cpu: 50m
+        memory: 2Gi
+      limits:
+        cpu: 100m
+        memory: 2Gi
     heapSize: 2Gi # default
     # telemetry:
     #   prometheus:
