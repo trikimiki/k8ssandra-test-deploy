@@ -73,7 +73,7 @@ spec:
       storageSecretRef:
         name: medusa-s3-secret
       bucketName: k8ssandra-test-triki-backups
-    purgeBackups: false # configure lifecycle on S3 bucket instead
+      maxBackupAge: 35
 
   reaper:
     containerImage:

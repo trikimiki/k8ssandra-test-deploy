@@ -1,11 +1,11 @@
 apiVersion: medusa.k8ssandra.io/v1alpha1
 kind: MedusaBackupSchedule
 metadata:
-  name: weekly-full-backup
+  name: daily-backup
   namespace: thingsboard
 spec:
   backupSpec:
     cassandraDatacenter: ap-south-1
-    backupType: full
-  cronSchedule: "0 2 * * 6" # “At 02:00 on Saturday.”
+    backupType: differential
+  cronSchedule: "0 2 * * *"
   disabled: false
