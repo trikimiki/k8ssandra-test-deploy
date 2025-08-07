@@ -58,7 +58,7 @@ spec:
         cpu: 200m
         memory: 500Mi
       limits:
-        cpu: 500m
+        cpu: 1000m
         memory: 750Mi
     initContainerResources:
       requests:
@@ -102,10 +102,10 @@ spec:
     resources:
       requests:
         cpu: 50m
-        memory: 2Gi
+        memory: 2500Mi
       limits:
-        cpu: 100m
-        memory: 2Gi
+        cpu: 1000m
+        memory: 2500Mi
     heapSize: 2Gi # default
     # telemetry:
     #   prometheus:
