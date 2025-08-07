@@ -255,3 +255,5 @@ if you need to re-bound PVs to PVCs after k8ssandra was deleted:
   - check that PVs have same names, labels and size as desribed in k8ssandra CRDs
   - patch your PVs: `kubectl -n thingsboard patch pv pvc-xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx -p '{"spec":{"claimRef": null}}'`
   - after you re-deploy k8ssandra cluster - old PVs should automatically bound to new PVCs
+
+`helm repo add prometheus-community https://prometheus-community.github.io/helm-charts` - migrate monitoring to helm chart (thats also dependency for k8c`telemetry.prometheus`)

@@ -38,7 +38,7 @@ spec:
         heap_max_size: 4G # same as "-Xms" or "MAX_HEAP_SIZE"
     storageConfig:
       cassandraDataVolumeClaimSpec:
-        storageClassName: gp3-retainable
+        storageClassName: gp3
         accessModes:
           - ReadWriteOnce
         resources:
