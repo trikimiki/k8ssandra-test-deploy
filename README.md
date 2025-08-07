@@ -240,3 +240,18 @@ this will generate 440 key-values saved to cassandra per second (40 integers and
 troubleshooting: https://docs.k8ssandra.io/tasks/troubleshoot/
 
 monitoring - i will do mcac (or vector?) expose + separate prometheus deployment; k8ssandra could also deploy prometheus as part of k8ssandracluster, see https://docs.k8ssandra.io/components/metrics-collector/
+
+# retainable PVs - via patching:
+
+https://forum.k8ssandra.io/t/how-to-reuse-the-same-pv-pvc-when-we-restart-the-cluster-or-cassandra-datacenter/532
+
+k8ssandra automatically deletes PVC with cluster resource deletion
+
+there is no delete policy available from k8ssandra side, so we need to ensure volumes are persisted via reclaim policy patch:
+
+  `kubectl patch pv <pv-name> -p '{"spec":{"persistentVolumeReclaimPolicy":"Retain"}}'`
+
+if you need to re-bound PVs to PVCs after k8ssandra was deleted:
+  - check that PVs have same names, labels and size as desribed in k8ssandra CRDs
+  - patch your PVs: `kubectl -n thingsboard patch pv pvc-xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx -p '{"spec":{"claimRef": null}}'`
+  - after you re-deploy k8ssandra cluster - old PVs should automatically bound to new PVCs
