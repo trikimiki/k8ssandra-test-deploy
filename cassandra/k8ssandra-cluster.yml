@@ -74,6 +74,7 @@ spec:
         name: medusa-s3-secret
       bucketName: k8ssandra-test-triki-backups
       maxBackupAge: 35
+    purgeBackups: false # instead run purge via cron after backup
 
   reaper:
     containerImage:

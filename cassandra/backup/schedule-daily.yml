@@ -4,8 +4,20 @@ metadata:
   name: daily-backup
   namespace: thingsboard
 spec:
+  operationType: backup
   backupSpec:
     cassandraDatacenter: ap-south-1
     backupType: differential
   cronSchedule: "0 2 * * *"
-  disabled: false
+
+---
+apiVersion: medusa.k8ssandra.io/v1alpha1
+kind: MedusaBackupSchedule
+metadata:
+  name: purge-job
+  namespace: thingsboard
+spec:
+  operationType: purge
+  backupSpec:
+    cassandraDatacenter: ap-south-1
+  cronSchedule: "0 4 * * *"
