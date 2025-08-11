@@ -38,11 +38,13 @@ spec:
     resources:
       requests:
         cpu: 1000m
-        memory: 5Gi
+        memory: 4Gi
       limits:
         cpu: 2000m
-        memory: 5Gi
+        memory: 4Gi
     env:
+    - name: JAVA_OPTS
+      value: "-Xms3G -Xmx3G -Xss512k -XX:+AlwaysPreTouch"
     - name: TB_SERVICE_ID
       valueFrom:
         fieldRef:

@@ -103,11 +103,11 @@ spec:
     resources:
       requests:
         cpu: 50m
-        memory: 2500Mi
+        memory: 1200Mi
       limits:
         cpu: 1000m
-        memory: 2500Mi
-    heapSize: 2Gi # default
+        memory: 1200Mi
+    heapSize: 1Gi # default
     # telemetry:
     #   prometheus:
     #     enabled: true
